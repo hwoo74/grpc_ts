@@ -1,0 +1,53 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    // File Layout
+    // "rootDir": "./src",
+    // "outDir": "./dist",
+
+    // Environment Settings
+    // See also https://aka.ms/tsconfig/module
+    "module": "commonjs", // 속편하게 commonjs ... 에디터가 헤멘다. nextnode로 하면 에디터가 못찾음
+    "target": "esnext",
+    "types": [],
+    // For nodejs:
+    // "lib": ["esnext"],
+    // "types": ["node"],
+    // and npm install -D @types/node
+
+    // Other Outputs
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    // Stricter Typechecking Options
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    // Style Options
+    // "noImplicitReturns": true,
+    // "noImplicitOverride": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    // "noFallthroughCasesInSwitch": true,
+    // "noPropertyAccessFromIndexSignature": true,
+
+    // Recommended Options
+    "strict": true,
+    "jsx": "react-jsx",
+    //"verbatimModuleSyntax": true,
+    // 이 옵션이 문제를 일으킵니다. 반드시 제거하거나 false로 설정하세요.
+    // 이 옵션은 ESM/CommonJS 충돌을 엄격하게 감지하여 에러를 냅니다.
+    "verbatimModuleSyntax": false,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true,
+    
+    // 추가 옵션. vscode 가 알아먹도록..
+    "outDir": ".build",
+    "moduleResolution": "node", 
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  }
+}

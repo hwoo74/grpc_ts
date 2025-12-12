@@ -1,0 +1,27 @@
+{
+  "name": "grpc_ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "run:local": "cross-env NODE_ENV=local node ./.build/server.js",
+    "proto_build:grpc:js": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./generated --grpc_out=grpc_js:./generated --plugin=protoc-gen-grpc=./node_modules/.bin/grpc_tools_node_protoc_plugin -I ./protos -I /usr/src/app/grpc_mysql/node_modules/google-protobuf ./protos/*.proto",
+    "proto_build:grpc:ts": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./generated --grpc_out=grpc_js:./generated --plugin=protoc-gen-grpc=./node_modules/.bin/grpc_tools_node_protoc_plugin --ts_out=grpc_js:./generated --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts -I ./protos -I /usr/src/app/grpc_mysql/node_modules/google-protobuf ./protos/*.proto"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.14.2",
+    "@grpc/proto-loader": "^0.8.0",
+    "dotenv": "^17.2.3",
+    "mysql2": "^3.15.3",
+    "pm2": "^6.0.14"
+  },
+  "devDependencies": {
+    "@types/google-protobuf": "^3.15.12",
+    "@types/node": "^24.10.2",
+    "cross-env": "^10.1.0",
+    "grpc-tools": "^1.13.1",
+    "grpc_tools_node_protoc_ts": "^5.3.3",
+    "typescript": "^5.9.3"
+  }
+}

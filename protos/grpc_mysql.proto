@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+// empty 형태를 쓰기위해선, 아래 import 필요. import 는 proto 파일 공식 규약. 
+// 단, 빌드시에 package.json 에 아래 파일의 경로를 알려줘야 함.  -I ./node_modules/google-protobuf/protobuf
+import "google/protobuf/empty.proto";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.routeguide";
+option java_outer_classname = "RouteGuideProto";
+option objc_class_prefix = "RTG";
+
+package routeguide;
+
+// Interface exported by the server.
+
+service RouteGuide {
+  rpc GetUser(Id) returns (UserName) {}
+  rpc SetUser(UserName) returns (Id) {}
+  rpc GetAllUser(google.protobuf.Empty) returns (AllUser) {}    // 파라미터가 없을땐, google.protobuf.Empty 사용. (E 대문자!!!)
+  //rpc RecordRoute(stream Point) returns (RouteSummary) {}
+  //rpc RouteChat(stream RouteNote) returns (stream RouteNote) {}
+}
+
+message Id {
+    int32 id = 1;
+}
+
+message UserName {
+    string name = 1;
+}
+
+message AllUser {
+    repeated UserName users = 1;
+}
