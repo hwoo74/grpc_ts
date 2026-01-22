@@ -8,15 +8,21 @@ import UserModel from '../model/userModel';
 /**
  * GetUser (단방향 RPC): Id를 받아 UserName을 반환
  */
-export const myGetUser = (
+export const myGetUser = async (
+    connection: PoolConnection,
     call: ServerUnaryCall<messages.Id, messages.UserName>,
     callback: sendUnaryData<messages.UserName>
-): void => {
+): Promise<void> => {
     const userId = call.request.getId();
     console.log(`[App] GetUser 요청 받음: ID = ${userId}`);
 
+    const userModel = new UserModel(connection);
+    const userNameFromDB = await userModel.getUserById(userId); // 동기 메서드 사용 예시
+    console.log(`DB에서 조회된 사용자 이름: ${userNameFromDB}`);
+
+    // rpc 응답 생성
     const userName = new messages.UserName();
-    userName.setName(`User_${userId}`);
+    userName.setName(userNameFromDB);
 
     callback(null, userName);
 };

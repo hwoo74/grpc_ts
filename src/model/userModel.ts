@@ -9,6 +9,12 @@ class UserModel extends BaseModel {
         super(conn)
     }
 
+    getUserById = async (id: number): Promise<string> => {
+        const sql = 'SELECT datas as name FROM testdata WHERE num = ?';
+        const rows = await this.executeQuery(sql, [id]);
+        return rows.length > 0 ? rows[0].name : '';
+    }
+
     getAllUsers = async (): Promise<string[]> => {
         const sql = 'SELECT num, datas as name FROM testdata';
         const rows = await this.executeQuery(sql);

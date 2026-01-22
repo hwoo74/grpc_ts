@@ -40,6 +40,7 @@ export function useDbConnection<RequestType, ResponseType>(
 
             // 2. 비즈니스 로직 실행
             await serviceHandler(connection, call, callback);
+            // 여기 파라미터의 전달 순서에 맞춰서 serviceHandler 가 호출됨.. 즉, connection 이 가장 먼저 옴.
 
         } catch (error) {
             console.error('[gRPC Interceptor] 핸들러 실행 중 오류 포착:', error);

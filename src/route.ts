@@ -8,7 +8,7 @@ const serverImplementation: IRouteGuideServer = {
     // RPC 메서드 이름 (소문자 카멜 케이스)과 구현 함수를 연결. 
     // proto 파일의 rpc 이름과 일치해야 합니다. 
     // 대소문자 차이 주의 !! (node grpc-js 규칙)
-    getUser: myGetUser,
+    getUser: useDbConnection(myGetUser),
     setUser: mySetUser,
     getAllUser: useDbConnection(myGetAllUser)   // 인터셉터로 래핑된 함수 사용, 이경우 파라미터 값은 useDbConnection 형식에 맞출것. (파라미터 3개)
 };
